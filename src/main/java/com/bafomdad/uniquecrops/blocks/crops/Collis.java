@@ -42,6 +42,9 @@ public class Collis extends BaseCropsBlock {
         int chanceByHeight = Math.round(pos.getY() / 16);
 
         if (world.getBrightness(LightLayer.SKY, pos.above()) >= 9) {
+            if (chanceByHeight < 1) {
+                chanceByHeight = 1;
+            }
             int growthChance = world.random.nextInt(16 - chanceByHeight);
             if (!isMaxAge(state) && growthChance == 0) {
                 world.setBlock(pos, this.setValueAge(getAge(state) + 1), 2);
